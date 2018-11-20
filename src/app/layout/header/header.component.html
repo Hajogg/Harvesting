@@ -1,0 +1,47 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxFill>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>reorder</mat-icon>
+      </button>
+
+      <span>Ernten</span>
+
+      <span fxFlex></span>
+
+      <span fxLayout="row" fxLayoutAlign="start center">
+        <!-- <a
+          mat-button
+          *ngFor="let locale of locales"
+          (click)="changeLocale(locale)"
+        >{{ locale.nameShort }}</a> -->
+
+        <!--<button *ngIf="user"
+          mat-mini-fab
+          mat-tooltip="{{ 'HEADER_BUTTON_LOGOUT' | translate }}"
+          tooltip-position="below"
+          (click)="authService.logout()"
+        >
+          <mat-icon>power_settings_new</mat-icon>
+        </button>
+
+        <button *ngIf="!user"
+          mat-mini-fab
+          mat-tooltip="{{ 'HEADER_BUTTON_LOGIN' | translate }}"
+          tooltip-position="below"
+          [routerLink]="['./login']"
+        >
+          <mat-icon>person</mat-icon>
+        </button>-->
+           <button *ngIf="!user"
+          mat-mini-fab
+          matTooltip="{{ 'HEADER_BUTTON_LOGOUT' | translate }}"
+          tooltip-position="below"
+          (click)="authService.logout()"
+        >
+          <mat-icon>person</mat-icon> {{userName}}
+        </button>
+      </span>
+    </div>
+  </mat-toolbar>
+</div>

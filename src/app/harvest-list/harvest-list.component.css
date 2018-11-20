@@ -1,0 +1,38 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 32px;
+}
+
+.mat-table {
+  overflow: auto;
+}
+.mat-cell:nth-child(5), .mat-header-cell:nth-child(5) {
+  flex: 0 0 60px;
+}
+.mat-cell:nth-child(6), .mat-header-cell:nth-child(6) {
+  flex: 0 0 60px;
+}

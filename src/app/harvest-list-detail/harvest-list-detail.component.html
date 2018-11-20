@@ -1,0 +1,16 @@
+
+  <span  >{{ harvest.name }}: </span>
+  <span class="description">{{ harvest.comment }}</span>
+   
+  <span>({{ harvest.location}}, {{((harvest?.date / 1000) | amFromUnix) | amDateFormat: 'DD.MM.YY'}})</span>
+
+     <!--<div fxFlex fxLayout="column" fxLayoutAlign="space-between stretch">
+  <h3  >{{ harvest.name }}</h3>
+   </div>
+  <div fxFlex fxLayout="column" fxLayoutAlign="space-between stretch">
+  <h4 class="description">{{ harvest.comment }}</h4>
+  </div>
+   <div fxFlex fxLayout="column" fxLayoutAlign="space-between stretch">
+  <span>{{((harvest?.date / 1000) | amFromUnix) | amDateFormat: 'DD.MM.YY hh:mm'}}</span>
+   </div>-->
+

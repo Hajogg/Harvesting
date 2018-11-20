@@ -1,0 +1,42 @@
+<div class="container"
+  fxLayout="column"
+>
+  <mat-nav-list>
+    <!-- Common menus for all -->
+    <mat-list-item>
+      <a mat-line [routerLink]="['./home']">Home</a>
+    </mat-list-item>
+
+    <!-- Menus for not logged in users -->
+    <div *ngIf="!user">
+      <mat-list-item>
+        <a mat-line [routerLink]="['./login']">Login</a>
+      </mat-list-item>
+    </div>
+
+  
+      <mat-list-item>
+        <a mat-line [routerLink]="['./harvests']">Meine Ernten</a>
+      </mat-list-item>
+
+        <mat-list-item>
+        <a mat-line [routerLink]="['./harvests/edit']">Ernte-Eintrag erstellen</a>
+      </mat-list-item>
+
+    <!-- Menus for logged in users -->
+    <!--<div *ngIf="user">
+      <mat-list-item>
+        <a mat-line [routerLink]="['/auth/profile']">Profile</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a mat-line disabled [routerLink]="['/examples/authors']">Examples: Authors</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a mat-line disabled [routerLink]="['/examples/books']">Examples: Books</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a mat-line (click)="authService.logout()">Logout</a>
+      </mat-list-item>
+    </div>-->
+  </mat-nav-list>
+</div>

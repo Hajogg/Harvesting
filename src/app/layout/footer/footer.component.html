@@ -1,0 +1,24 @@
+<div class="footer">
+  <mat-toolbar color="primary">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxFill>
+      <span *ngFor="let link of links">
+        <a href="{{ link.url }}" target="_blank">
+          <mat-icon>{{ link.icon }}</mat-icon>
+
+          <span [ngSwitch]="link.translate">
+            <span *ngSwitchCase="true">
+              {{ link.name | translate }}
+            </span>
+            <span *ngSwitchDefault>
+              {{ link.name }}
+            </span>
+          </span>
+        </a>
+      </span>
+
+      <div fxFlex></div>
+
+      <small>{{ version }}</small>
+    </div>
+  </mat-toolbar>
+</div>

@@ -1,0 +1,23 @@
+<div class="normal-content" fxLayout="column"   fxFill>
+  <h2>Aktuellee Eintrag</h2>
+ 
+  <div class="twelve wide column">
+    <h1 class="ui header">{{ harvest?.name }}</h1>
+    <h3 class="ui header">{{ harvest?.comment }}</h3>
+    <div class="ui grid">
+      <div class="four wide column">
+        <h4 class="ui header">Erschienen</h4>
+        <!-- {{((harvest.date / 1000) | amFromUnix) | amDateFormat: 'DD.MM.YY HH:mm'}} -->
+      </div>
+       <div class="four wide column">
+        <h4 class="ui header">Aktion</h4>
+        {{ harvest?.action }}
+      </div>
+       <div class="four wide column">
+        <h4 class="ui header">Ort</h4>
+        {{ harvest?.location }}
+      </div>
+    </div>
+  </div>
+  
+</div>

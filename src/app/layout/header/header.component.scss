@@ -1,0 +1,15 @@
+.container {
+  span {
+    margin-left: 8px;
+  }
+
+  a {
+    &.mat-button {
+      min-width: 0;
+
+      &:last-of-type {
+        margin-right: 16px;
+      }
+    }
+  }
+}

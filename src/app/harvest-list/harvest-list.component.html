@@ -1,0 +1,87 @@
+<div class="normal-content" fxLayout="column"   fxFill>
+  <h2>Aktuelle Einträge</h2>
+<!--
+   <mat-list>
+    <mat-list-item 
+      *ngFor="let h of harvestItems"
+      [class.active]="h.active"
+      [class.done]="h.done"
+      (mouseenter)="h.active = true"
+      (mouseleave)="h.active = false"
+    >
+     <div fxLayout="row" fxLayoutAlign="space-between center" fxFill>
+     
+        <a class="app-harvest-list-detail"  [harvest]="h" [routerLink]="h.id"></a>
+      </div>
+       <button mat-mini-fab color="warn"
+            (click)="remove(h)"
+          >  <mat-icon>clear</mat-icon></button>
+    </mat-list-item>
+   </mat-list>-->
+
+   
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="Filter Ernten">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource"  >
+
+  
+    <ng-container cdkColumnDef="id">
+      <mat-header-cell *cdkHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+  
+    <ng-container cdkColumnDef="name">
+      <mat-header-cell *cdkHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+
+  
+    <ng-container cdkColumnDef="location">
+      <mat-header-cell *cdkHeaderCellDef> Ort </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{row.location}} </mat-cell>
+    </ng-container>
+
+ 
+    <ng-container cdkColumnDef="date">
+      <mat-header-cell *cdkHeaderCellDef> Datum </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{((row.date / 1000) | amFromUnix) | amDateFormat: 'DD.MM.YYYY'}} </mat-cell>
+    </ng-container>
+
+  
+    <ng-container cdkColumnDef="action">
+      <mat-header-cell *cdkHeaderCellDef> Aktion </mat-header-cell>
+      <mat-cell *cdkCellDef="let row" [style.color]="row.action"> {{row.action}} </mat-cell>
+    </ng-container>
+
+      <ng-container cdkColumnDef="delete">
+      <mat-header-cell *cdkHeaderCellDef> Löschen </mat-header-cell>
+      <mat-cell *cdkCellDef="let row" [style.color]="row.action">  <button mat-mini-fab color="warn"
+            (click)="remove(row)"
+          >  <mat-icon>clear</mat-icon></button></mat-cell>
+    </ng-container>
+      <ng-container cdkColumnDef="edit">
+      <mat-header-cell *cdkHeaderCellDef> Editieren </mat-header-cell>
+      <mat-cell *cdkCellDef="let row" >  <button mat-mini-fab color="edit"
+            (click)="edit(row)"
+          >  <mat-icon>edit</mat-icon></button></mat-cell>
+    </ng-container>
+
+    <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *cdkRowDef="let row; columns: displayedColumns;" (click)="expandRow(row)"  #cdkrow ></mat-row>
+  </mat-table>
+</div>
+
+
+
+  <div *ngIf="!harvestItems" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+  <p *ngIf="harvestItems && !harvestItems.length">Es wurden noch keine Daten eingetragen.</p>
+</div>

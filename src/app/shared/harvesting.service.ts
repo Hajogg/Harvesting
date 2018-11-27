@@ -13,6 +13,7 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { MomentModule } from 'angular2-moment';
 import { Harvest } from './harvest';
+import { Action } from '../domain/action';
 import { HarvestFactory } from './harvest-factory';
 import * as moment  from 'angular2-moment';
 import { Router } from '@angular/router';
@@ -198,6 +199,32 @@ export class HarvestingService {
     this.harvestItems = undefined;
   }
 
+  getActions(): Observable<Array<Action>> {
+    var harvests =  this.harvestItems.snapshotChanges().map(items => {
+     return items.map(item => {
+       const data = item.payload.doc.data() as Action;
+       const id = item.payload.doc.id;
+       console.log('>>>>', { id, ...data });
+      
+       return {id, ...data };
+     });
+   });
+       //.map(response => response.json())
+       //.map(rawHarvests => rawHarvests.filter(p=>p.userId == localStorage.getItem('uid')))
+       // .map(rawHarvests => 
+       
+       // {
+       //   var result = rawHarvests
+       //   .map(rawHarvest => HarvestFactory.fromObject(rawHarvest));
+       //   return result;
+       // }
+       // )
+       // .map((array) => array.reverse()); //.catch(this.errorHandler);
+       // change order 
+       return harvests; //.filter(p=>p.userId==localStorage.getItem('uid'));
+   }
+ 
+   
   // getAllSearch(searchTerm: string): Observable<Array<Harvest>> {
   //   return this.http
   //     .get(`${this.api}/harvests/search/${searchTerm}`)

@@ -9,7 +9,7 @@
 /node_modules
 
 #app
-/src/app/config.ts
+/src/app/config/config.ts
 
 # IDEs and editors
 /.idea

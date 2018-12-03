@@ -42,20 +42,14 @@
       </mat-form-field>
   </div>  
 
- 
- <!--<div class="form-group">
-    <label class="col-mat-4 control-label">Datum</label>
-    <material-datepicker [(date)]="date" ></material-datepicker>
-    <div *ngIf="errors.date" class="ui negative message">
-      {{ errors.date }}
-    </div>
-  </div>-->
 <mat-form-field>
   <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Datum wählen">
+  <!-- <input formControlName="date" matInput placeholder="Datum wählen"> -->
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <!-- <button mdSuffix [mat-datepicker-toggle]="picker"></button> -->
+  
+  <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-<mat-datepicker #picker></mat-datepicker>
 <!--<mat-datepicker #picker></mat-datepicker>-->
 
   <div fxLayout="row" fxFill>

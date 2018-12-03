@@ -2,7 +2,7 @@ import { Harvest } from './Harvest';
 export class HarvestFactory {
 
       static empty(): Harvest {
-    return new Harvest('unknown',"unknown", '', '',"", new Date(), 'Ernten', false);
+    return new Harvest('unknown',"unknown", '', '',"",  new Date().toDateString(),new Date(), 'Ernten', false);
   }
 
    static fromObject(rawBook: any): Harvest {
@@ -11,7 +11,9 @@ export class HarvestFactory {
       rawBook.cuid,
       rawBook.name,
       rawBook.comment,
-      rawBook.location,
+      rawBook.location, 
+      typeof(rawBook.date) === 'string' ?
+       rawBook.date : rawBook.date,
       typeof(rawBook.date) === 'string' ?
         new Date(rawBook.date) : rawBook.date,
       rawBook.action,

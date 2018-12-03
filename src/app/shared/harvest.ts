@@ -1,3 +1,5 @@
+
+import { firestore } from 'firebase/firestore' 
 export class Harvest  {
   constructor(
     public id: string,
@@ -5,7 +7,8 @@ export class Harvest  {
     public name: string,
     public comment: string,
     public location: string,
-    public date: Date,
+    public date: firestore.Timestamp, 
+    public jsDate: Date,
     public action: string,
     public isPublic: boolean
   ) { }

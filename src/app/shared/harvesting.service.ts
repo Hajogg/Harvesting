@@ -17,11 +17,13 @@ import { Action } from '../domain/action';
 import { HarvestFactory } from './harvest-factory';
 import * as moment  from 'angular2-moment';
 import { Router } from '@angular/router';
+import { firestore } from 'firebase/firestore' 
 
 @Injectable()
 export class HarvestingService {
   public harvestItems: AngularFirestoreCollection<Harvest>;
   items: Observable<Harvest[]>;
+  public actionItems:AngularFirestoreCollection<Action>;
   public displayName: string;
   public email: string;
   readonly path = 'harvestItems';
@@ -36,7 +38,10 @@ export class HarvestingService {
         const data = action.payload.doc.data() as Harvest;
         const id = action.payload.doc.id;
         console.log('>>>>', { id, ...data });
-        data.id = id;
+        data.id = id;  
+        let date = data.date as firebase.firestore.Timestamp;
+        data.date = date;
+        data.jsDate = date.toDate();
         return { ...data };
       });
     });
@@ -89,7 +94,10 @@ export class HarvestingService {
       const data = action.payload.doc.data() as Harvest;
       const id = action.payload.doc.id;
       console.log('>>>>', { id, ...data });
-      data.id = id;
+      data.id = id;  
+      let date = data.date as firebase.firestore.Timestamp;
+      data.date = date;
+      data.jsDate = date.toDate();
       return { ...data };
     });
   });
@@ -130,6 +138,10 @@ export class HarvestingService {
       const data = action.payload.data() as Harvest;
       const id = action.payload.id;
       data.id = id;
+      //data.jsDate = data.date.getDate();
+      let date = data.date as firebase.firestore.Timestamp;
+      data.date = date;
+      data.jsDate = date.toDate();
       return { ...data };
     });
    
@@ -141,21 +153,21 @@ export class HarvestingService {
       name: harvest.name,
       userId: harvest.userId,
       comment: harvest.comment,
-      date: harvest.date.toString(),
+      date: harvest.jsDate.toString(),
       location: harvest.location,
       action: harvest.action,
       isPublic: harvest.isPublic
     };
 
     // hack
-    let month = String(harvest.date.getMonth() + 1);
-    let day = String(harvest.date.getDate());
-    const year = String(harvest.date.getFullYear());
+    let month = String(harvest.jsDate.getMonth() + 1);
+    let day = String(harvest.jsDate.getDate());
+    const year = String(harvest.jsDate.getFullYear());
 
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
 
-    item.date = `${year}-${month}-${day} ${harvest.date.getHours()}:${harvest.date.getMinutes()}`;
+    item.date = `${year}-${month}-${day} ${harvest.jsDate.getHours()}:${harvest.jsDate.getMinutes()}`;
     harvest.id = "dummy";
     //debugger;
     this.harvestItems.add({... harvest});
@@ -171,7 +183,7 @@ export class HarvestingService {
       name: harvest.name,
       userId: harvest.userId,
       comment: harvest.comment,
-      date: harvest.date.toString(),
+      date: harvest.jsDate,
       location: harvest.location,
       action: harvest.action,
       isPublic: harvest.isPublic
@@ -203,10 +215,10 @@ export class HarvestingService {
     var harvests =  this.harvestItems.snapshotChanges().map(items => {
      return items.map(item => {
        const data = item.payload.doc.data() as Action;
-       const id = item.payload.doc.id;
-       console.log('>>>>', { id, ...data });
+       data.id = item.payload.doc.id;
+       console.log('>>>>', {  ...data });
       
-       return {id, ...data };
+       return { ...data };
      });
    });
        //.map(response => response.json())

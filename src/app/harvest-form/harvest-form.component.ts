@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 import { Harvest } from '../shared/harvest';
+import { Action } from '../domain/action';
 import { HarvestFactory } from '../shared/harvest-factory';
 import { HarvestingService } from '../shared/harvesting.service';
 import { HarvestFormErrorMessages } from './harvest-form-error-messages';
@@ -16,6 +17,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class HarvestFormComponent implements OnInit {
   harvest = HarvestFactory.empty();
+  actions: Action = {id: '', name:'Erten'};  
   errors: { [key: string]: string } = {};
   isUpdatingHarvest = false;
   myForm: FormGroup;
@@ -42,6 +44,7 @@ export class HarvestFormComponent implements OnInit {
     }
     this.initHarvest();
   }
+
  initHarvest() {
 
     this.myForm = this.fb.group({
@@ -49,9 +52,10 @@ export class HarvestFormComponent implements OnInit {
       comment: this.harvest.comment,
       location: this.harvest.location,
       action: this.harvest.action,
-      date: this.harvest.date,
+      date: this.harvest.jsDate,
       isPublic: this.harvest.isPublic
     });
+    console.log(this.harvest.date);
     this.myForm.statusChanges.subscribe(() => this.updateErrorMessages());
   }
     submitForm() {

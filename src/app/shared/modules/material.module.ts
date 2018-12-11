@@ -12,7 +12,8 @@ import {
   MatDatepickerModule, 
   NativeDateModule,
   MatTableModule,
-  MatNativeDateModule 
+  MatNativeDateModule,
+  MatSelectModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 
@@ -33,7 +34,8 @@ import {CdkTableModule} from '@angular/cdk/table';
     CdkTableModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatSelectModule
 
   ],
   exports: [
@@ -52,7 +54,8 @@ import {CdkTableModule} from '@angular/cdk/table';
     CdkTableModule,
     MatTooltipModule, 
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatSelectModule
   ],
 })
 

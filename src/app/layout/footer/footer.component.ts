@@ -11,7 +11,7 @@ import { FooterItemInterface } from './interfaces/';
 })
 
 export class FooterComponent {
-  public version = 'v.0.6'; //require('../../../../package.json').version;
+  public version = 'v.0.7'; //require('../../../../package.json').version;
 
   public links: FooterItemInterface[] = [
     // {

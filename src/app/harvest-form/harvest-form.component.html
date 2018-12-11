@@ -32,7 +32,7 @@
       </mat-form-field>
   </div>
 
-   <div fxLayout="row" fxFill>
+   <!-- <div fxLayout="row" fxFill>
       <mat-form-field fxFlex>
     <label class="col-mat-4 control-label">Aktion</label>
     <input matInput formControlName="action" class="form-control input-md">
@@ -40,7 +40,16 @@
       {{ errors.action }}
     </div>
       </mat-form-field>
-  </div>  
+  </div>   -->
+  <div fxLayout="row" fxFill>
+  <mat-form-field>
+    <mat-select placeholder="Aktion"  formControlName="action" name="action">
+      <mat-option *ngFor="let action of actions" [value]="action.name">
+        {{action.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>  
 
 <mat-form-field>
   <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Datum wählen">
@@ -62,10 +71,12 @@
         </div>
       </div>
   </div>
-
+  <div fxLayout="row" fxFill>
+    <br/>
+ </div>
   <!--<button type="submit" class="ui button" [disabled]="myForm.invalid">Speichern</button>-->
   <div fxLayout="row" fxFill>
-     <button mat-raised-button type="submit"  >Speichern</button>
+     <button mat-raised-button type="submit"   ><mat-icon >save</mat-icon></button>
   </div>
   </fieldset>
 </form>

@@ -36,3 +36,8 @@
 .mat-cell:nth-child(6), .mat-header-cell:nth-child(6) {
   flex: 0 0 60px;
 }
+.addButtonAera {
+  padding-top: 10px;
+  display:flex;
+  justify-content:flex-end;
+}

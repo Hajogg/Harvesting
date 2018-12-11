@@ -57,10 +57,12 @@ export class HarvestListComponent implements OnInit, AfterViewInit {
  public remove(item: Harvest):void  {
    debugger;
     this.hs.remove(item);
+    this.router.navigate(['/harvests']);
   }
   expandRow(item:Harvest) {
     debugger;
-     this.router.navigate(['/harvests/', item.id]);
+     //this.router.navigate(['/harvests/', item.id]);
+     this.router.navigate(['/harvests']);
   }
    public edit(item: Harvest):void  {
    //debugger;

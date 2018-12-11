@@ -46,6 +46,8 @@ export class HarvestingService {
       });
     });
     
+    this.actionItems =  this.afs.collection<Action>('actions'); 
+    
    }
     loginWithGoogle() {
     return  this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
@@ -212,7 +214,7 @@ export class HarvestingService {
   }
 
   getActions(): Observable<Array<Action>> {
-    var harvests =  this.harvestItems.snapshotChanges().map(items => {
+    var actions =  this.actionItems.snapshotChanges().map(items => {
      return items.map(item => {
        const data = item.payload.doc.data() as Action;
        data.id = item.payload.doc.id;
@@ -233,7 +235,7 @@ export class HarvestingService {
        // )
        // .map((array) => array.reverse()); //.catch(this.errorHandler);
        // change order 
-       return harvests; //.filter(p=>p.userId==localStorage.getItem('uid'));
+       return actions; //.filter(p=>p.userId==localStorage.getItem('uid'));
    }
  
    

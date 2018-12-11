@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 import { Harvest } from '../shared/harvest';
 import { Action } from '../domain/action';
@@ -17,7 +18,8 @@ import {MatSnackBar} from '@angular/material';
 })
 export class HarvestFormComponent implements OnInit {
   harvest = HarvestFactory.empty();
-  actions: Action = {id: '', name:'Erten'};  
+  actions:Action[]|null;
+  selectedAction:string;
   errors: { [key: string]: string } = {};
   isUpdatingHarvest = false;
   myForm: FormGroup;
@@ -43,6 +45,11 @@ export class HarvestFormComponent implements OnInit {
         this.isUpdatingHarvest = false;
     }
     this.initHarvest();
+    this.hs.getActions().subscribe(
+      action=>{
+        this.actions = action;
+      }
+    )
   }
 
  initHarvest() {
@@ -63,6 +70,7 @@ export class HarvestFormComponent implements OnInit {
    
 
     const harvest: Harvest = HarvestFactory.fromObject(this.myForm.value);
+    
     harvest.userId = localStorage.getItem('uid');
     if (this.isUpdatingHarvest) {
       const id = this.route.snapshot.params['id'];

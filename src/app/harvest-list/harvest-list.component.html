@@ -77,8 +77,9 @@
     <mat-row *cdkRowDef="let row; columns: displayedColumns;" (click)="expandRow(row)"  #cdkrow ></mat-row>
   </mat-table>
 </div>
-
-
+<div class="addButtonAera" >
+<button class="newButton" mat-mini-fab color="edit" [routerLink]="['edit']">  <mat-icon>add</mat-icon></button>
+</div>
 
   <div *ngIf="!harvestItems" class="ui active dimmer">
     <div class="ui large text loader">Daten werden geladen...</div>
